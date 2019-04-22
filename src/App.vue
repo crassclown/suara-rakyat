@@ -25,8 +25,9 @@ export default {
   async mounted(){
     await axios.get('https://kpu.nyandev.id/api/v1/count').then((response)=>{
       this.loaded = true
-      this.getData = [response.data.prabowo.percent, response.data.jokowi.percent]
+      this.getData = [response.data.results.prabowo.percent, response.data.results.jokowi.percent]
       this.chartData.datasets[0].data = this.getData
+      this.detailData = response.data.results
     })
   },
   data() {
@@ -38,7 +39,7 @@ export default {
         datasets: [
           {
             label: "Data One",
-            backgroundColor: ["#E46651", "#41B883"],
+            backgroundColor: ["#E46651", "#3498db"],
             data: null
           }
         ]
@@ -54,5 +55,23 @@ export default {
 </script>
 
 <style>
-
+body{
+  overflow: auto;
+  margin: 0;
+}
+.disc{
+  margin-top: 30px;
+  margin-bottom: 40px;
+  font-size: 16px;
+}
+.app-wrapper{
+  padding: 50px 30px;
+}
+@media(max-width: 376px){
+  .chartjs-render-monitor{
+    height: 250px !important;
+    width: 250px !important;
+    margin: auto;
+  }
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <i class="fas fa-chart-pie"></i>
-        <h4>Real Count KPU</h4>
+        <h4>Suara Rakyat</h4>
     </div>
 </template>
 
@@ -11,7 +11,7 @@
     align-items:center;
     position: fixed;
     top: 0;
-    background: #3498db;
+    background: rgba(30, 130, 76, 1);
     padding: 15px;
     left: 0;
     right: 0;
