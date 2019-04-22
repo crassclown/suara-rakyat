@@ -1,7 +1,11 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="app-wrapper">
+    <app-header />
+      <p class="disc">Disclaimer: Data yang ditampilkan berdasarkan website KPU.</p>
+      <div class="chart-wrapper">
+        <app-chart :data="chartData" :options="options" v-if="loaded" />
+      </div>
+    <app-footer :data="detailData" />
   </div>
 </template>
 
@@ -22,6 +26,7 @@ export default {
     await axios.get('https://kpu.nyandev.id/api/v1/count').then((response)=>{
       this.loaded = true
       this.getData = [response.data.prabowo.percent, response.data.jokowi.percent]
+      this.chartData.datasets[0].data = this.getData
     })
   },
   data() {
@@ -37,6 +42,11 @@ export default {
             data: null
           }
         ]
+      },
+      options: {
+        legend: {
+          display: false
+        }
       }
     }
   }
